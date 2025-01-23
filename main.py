@@ -1,5 +1,4 @@
-from pick_block_parameter import pick_shape
-from pick_block_parameter import pick_color
+from pick_block_parameter import pick_parameters
 import pygame
 
 
@@ -129,7 +128,6 @@ class Board:
         if self.blocks_placed == 3:
             self.generate_three_blocks()
             self.blocks_placed = 0
-
         return True
 
     def generate_three_blocks(self):
@@ -140,11 +138,27 @@ class Board:
             block.block_origin = pos
             block.set_position(*pos)
 
+    def check_horizontal_line(self):
+        for y in range(self.height):
+            for x in range(self.width):
+                if self.board[y] == [1, 1, 1, 1, 1, 1, 1, 1]:
+                    pass
+                # pygame.draw.rect(screen, pygame.Color("white"),
+                #                  (x * self.cell_size + self.left, y * self.cell_size + self.top,
+                #                   self.cell_size, self.cell_size), 1)
+
+    def check_vertical_line(self):
+        for x in range(self.height):
+            for y in range(self.width):
+                if self.board[y] == [1, 1, 1, 1, 1, 1, 1, 1]:
+                    pass
+                # pygame.draw.rect(screen, pygame.Color("white"),
+                #                  (x * self.cell_size + self.left, y * self.cell_size + self.top,
+                #                   self.cell_size, self.cell_size), 1)
+
 
 def generate_random_block():
-    shape = pick_shape()
-    color = pick_color()
-    return Block(shape, color)
+    return Block(*pick_parameters())
 
 
 def main():
