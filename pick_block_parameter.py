@@ -119,9 +119,6 @@ colors = [
 ]
 
 
-def pick_shape():
-    return random.choice(shapes)
-
-
-def pick_color():
-    return random.choice(colors)
+def pick_parameters():
+    parameters = random.choice(shapes), random.choice(colors)
+    return parameters
