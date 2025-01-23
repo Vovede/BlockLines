@@ -58,6 +58,7 @@ class Block:
 
         self.set_position(block_snapped_to_x, block_snapped_to_y)
         self.is_placed = True
+
         if not board.check_block(self):
             self.set_position(*self.block_origin)
 
@@ -67,6 +68,10 @@ class Board:
         self.width = width
         self.height = height
         self.board = [[0] * width for _ in range(height)]
+        self.blocks = []
+        self.placed_blocks = []
+        self.block_positions = []
+        self.blocks_placed = 0
 
         self.left = 10
         self.top = 10
@@ -116,7 +121,24 @@ class Board:
             for x, cell in enumerate(row):
                 if cell and 0 <= grid_x + x < self.width and 0 <= grid_y + y < self.height:
                     self.board[grid_y + y][grid_x + x] = 1
+
+        block.is_placed = True
+        self.blocks_placed += 1
+        self.placed_blocks.append(block)
+
+        if self.blocks_placed == 3:
+            self.generate_three_blocks()
+            self.blocks_placed = 0
+
         return True
+
+    def generate_three_blocks(self):
+        self.blocks = [generate_random_block() for _ in range(3)]
+        self.block_positions = [(i * 150 + 50, 500) for i in range(3)]
+
+        for block, pos in zip(self.blocks, self.block_positions):
+            block.block_origin = pos
+            block.set_position(*pos)
 
 
 def generate_random_block():
@@ -135,13 +157,7 @@ def main():
     size = ((board.width + 2) * board.left, (board.height + 6) * board.top)
     screen = pygame.display.set_mode(size)
 
-    blocks = [generate_random_block() for _ in range(3)]
-    block_area_y = size[1] - 200
-    block_positions = [(i * 150 + 50, block_area_y) for i in range(3)]
-
-    for block, pos in zip(blocks, block_positions):
-        block.block_origin = pos
-        block.set_position(*pos)
+    board.generate_three_blocks()
 
     running = True
     dragging = None
@@ -153,7 +169,7 @@ def main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    for block in blocks:
+                    for block in board.blocks:
                         if block.is_mouse_over_block(event.pos, board.cell_size):
                             if not block.is_placed:
                                 dragging = block
@@ -177,7 +193,7 @@ def main():
         screen.fill((50, 130, 255))
         board.render(screen)
 
-        for block in blocks:
+        for block in board.placed_blocks + board.blocks:
             block.draw(screen, board.cell_size)
 
         pygame.display.flip()
