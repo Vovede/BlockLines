@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ac24a34-621a-40dd-8eb4-ce08d3f6bf9e" name="Changes" comment="main">
-      <change afterPath="$PROJECT_DIR$/main_backup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
+    <list default="true" id="6ac24a34-621a-40dd-8eb4-ce08d3f6bf9e" name="Changes" comment="idea">
+      <change afterPath="$PROJECT_DIR$/start_menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +37,7 @@
     "Python.main.executor": "Run",
     "Python.main_backup.executor": "Run",
     "Python.pick_block_parameter.executor": "Run",
+    "Python.start_menu.executor": "Run",
     "Python.temp.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -209,7 +208,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737658715435</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="main">
+      <option name="closed" value="true" />
+      <created>1738181427150</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738181427150</updated>
+    </task>
+    <task id="LOCAL-00014" summary="idea">
+      <option name="closed" value="true" />
+      <created>1738181448941</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738181448941</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,9 +262,9 @@
     <MESSAGE value="task for project" />
     <MESSAGE value="task" />
     <MESSAGE value="block_parameters" />
-    <MESSAGE value="idea" />
     <MESSAGE value="block parameters" />
     <MESSAGE value="main" />
-    <option name="LAST_COMMIT_MESSAGE" value="main" />
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
 </project>
