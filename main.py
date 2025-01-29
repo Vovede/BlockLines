@@ -2,6 +2,22 @@ from pick_block_parameter import pick_parameters
 import pygame
 
 
+# Класс для представления клетки на игровом поле
+class Cell:
+    def __init__(self, occupied=False, color=None):
+        self.occupied = occupied
+        self.color = color
+
+    def set_occupied(self, color):
+        self.occupied = True
+        self.color = color
+
+    def clear(self):
+        self.occupied = False
+        self.color = (50, 130, 255)
+
+
+# Класс для представления блока
 class Block:
     def __init__(self, shape, color):
         self.shape = shape
@@ -62,13 +78,13 @@ class Block:
             self.set_position(*self.block_origin)
 
 
+# Класс для представления игрового поля
 class Board:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.board = [[0] * width for _ in range(height)]
-        self.blocks = []
-        self.placed_blocks = []
+        self.board = [[Cell() for _ in range(width)] for _ in range(height)]
+        self.start_blocks = []
         self.block_positions = []
         self.blocks_placed = 0
 
@@ -77,15 +93,18 @@ class Board:
         self.cell_size = 30
 
     def render(self, screen):
-        pygame.draw.rect(screen, pygame.Color((0, 40, 100)),
+        pygame.draw.rect(screen, pygame.Color("Black"),
                          (self.cell_size, self.cell_size,
                           self.width * self.cell_size,
                           self.height * self.cell_size,), 2)
         for y in range(self.height):
             for x in range(self.width):
-                pygame.draw.rect(screen, pygame.Color((0, 40, 100)),
-                                 (x * self.cell_size + self.left, y * self.cell_size + self.top,
-                                  self.cell_size, self.cell_size), 1)
+                cell = self.board[y][x]
+                if cell.occupied:
+                    pygame.draw.rect(screen, cell.color, (
+                        x * self.cell_size + self.left, y * self.cell_size + self.top, self.cell_size, self.cell_size))
+                pygame.draw.rect(screen, pygame.Color("Black"), (
+                    x * self.cell_size + self.left, y * self.cell_size + self.top, self.cell_size, self.cell_size), 1)
 
     def set_view(self, left, top, cell_size):
         self.left = left
@@ -105,13 +124,13 @@ class Board:
 
                     if not (0 <= board_x < self.width and 0 <= board_y < self.height):
                         return False
-                    if self.board[board_y][board_x] == 1:
+                    if self.board[board_y][board_x].occupied:
                         return False
         return True
 
     def add_block(self, block):
         if not self.check_block(block):
-            return False
+            block.set_position(*block.block_origin)
         px, py = block.position
         grid_x = (px - self.left) // self.cell_size
         grid_y = (py - self.top) // self.cell_size
@@ -119,48 +138,46 @@ class Board:
         for y, row in enumerate(block.shape):
             for x, cell in enumerate(row):
                 if cell and 0 <= grid_x + x < self.width and 0 <= grid_y + y < self.height:
-                    self.board[grid_y + y][grid_x + x] = 1
+                    self.board[grid_y + y][grid_x + x].set_occupied(block.color)
 
-        block.is_placed = True
         self.blocks_placed += 1
-        self.placed_blocks.append(block)
+        self.start_blocks.remove(block)
 
         if self.blocks_placed == 3:
             self.generate_three_blocks()
             self.blocks_placed = 0
+
+        self.check_and_clear_lines()
         return True
 
     def generate_three_blocks(self):
-        self.blocks = [generate_random_block() for _ in range(3)]
+        self.start_blocks = [generate_random_block() for _ in range(3)]
         self.block_positions = [(i * 150 + 50, 500) for i in range(3)]
 
-        for block, pos in zip(self.blocks, self.block_positions):
+        for block, pos in zip(self.start_blocks, self.block_positions):
             block.block_origin = pos
             block.set_position(*pos)
 
-    def check_horizontal_line(self):
+    def check_and_clear_lines(self):
+        # Проверяем горизонтальные линии
         for y in range(self.height):
-            for x in range(self.width):
-                if self.board[y] == [1, 1, 1, 1, 1, 1, 1, 1]:
-                    pass
-                # pygame.draw.rect(screen, pygame.Color("white"),
-                #                  (x * self.cell_size + self.left, y * self.cell_size + self.top,
-                #                   self.cell_size, self.cell_size), 1)
+            if all(cell.occupied for cell in self.board[y]):
+                for x in range(self.width):
+                    self.board[y][x].clear()
 
-    def check_vertical_line(self):
-        for x in range(self.height):
-            for y in range(self.width):
-                if self.board[y] == [1, 1, 1, 1, 1, 1, 1, 1]:
-                    pass
-                # pygame.draw.rect(screen, pygame.Color("white"),
-                #                  (x * self.cell_size + self.left, y * self.cell_size + self.top,
-                #                   self.cell_size, self.cell_size), 1)
+        # Проверяем вертикальные линии
+        for x in range(self.width):
+            if all(self.board[y][x].occupied for y in range(self.height)):
+                for y in range(self.height):
+                    self.board[y][x].clear()
 
 
+# Функция для генерации случайного блока
 def generate_random_block():
     return Block(*pick_parameters())
 
 
+# Основная функция игры
 def main():
     pygame.init()
     pygame.display.set_caption("Block Lines")
@@ -183,20 +200,24 @@ def main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    for block in board.blocks:
+                    for block in board.start_blocks:
                         if block.is_mouse_over_block(event.pos, board.cell_size):
-                            if not block.is_placed:
-                                dragging = block
-                                mx, my = event.pos
-                                bx, by = block.position
-                                drag_offset = (mx - bx, my - by)
-                                break
+                            dragging = block
+                            mx, my = event.pos
+                            bx, by = block.position
+                            drag_offset = (mx - bx, my - by)
+                            break
             elif event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1 and dragging:
                     dragging.snap_to_grid(board.cell_size, (board.left, board.top), board.width,
                                           board.height, board)
                     if board.check_block(dragging):
                         board.add_block(dragging)
+                        # for row in board.board:
+                        #     for cell in row:
+                        #         print(cell.occupied, end=" ")
+                        #     print("\n")
+                        # print("_____________________________")
                     dragging = None
             elif event.type == pygame.MOUSEMOTION:
                 if dragging:
@@ -207,7 +228,7 @@ def main():
         screen.fill((50, 130, 255))
         board.render(screen)
 
-        for block in board.placed_blocks + board.blocks:
+        for block in board.start_blocks:
             block.draw(screen, board.cell_size)
 
         pygame.display.flip()
