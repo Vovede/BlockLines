@@ -87,6 +87,8 @@ class Board:
         self.start_blocks = []
         self.block_positions = []
         self.blocks_placed = 0
+        self.score = 0
+        self.score_multiplier = 0
 
         self.left = 10
         self.top = 10
@@ -139,7 +141,10 @@ class Board:
             for x, cell in enumerate(row):
                 if cell and 0 <= grid_x + x < self.width and 0 <= grid_y + y < self.height:
                     self.board[grid_y + y][grid_x + x].set_occupied(block.color)
+                    self.score_multiplier += 1
 
+        self.score += 1 * self.score_multiplier
+        self.score_multiplier = 0
         self.blocks_placed += 1
         self.start_blocks.remove(block)
 
@@ -151,7 +156,12 @@ class Board:
         return True
 
     def generate_three_blocks(self):
-        self.start_blocks = [generate_random_block() for _ in range(3)]
+        attempts = 10  # Количество попыток подбора
+        for _ in range(attempts):
+            self.start_blocks = [generate_random_block() for _ in range(3)]
+            if self.has_valid_moves(self.start_blocks):
+                break
+        # self.start_blocks = [generate_random_block() for _ in range(3)]
         self.block_positions = [(i * 150 + 50, 500) for i in range(3)]
 
         for block, pos in zip(self.start_blocks, self.block_positions):
@@ -162,14 +172,41 @@ class Board:
         # Проверяем горизонтальные линии
         for y in range(self.height):
             if all(cell.occupied for cell in self.board[y]):
+                self.score_multiplier += 8
                 for x in range(self.width):
                     self.board[y][x].clear()
 
         # Проверяем вертикальные линии
         for x in range(self.width):
             if all(self.board[y][x].occupied for y in range(self.height)):
+                self.score_multiplier += 8
                 for y in range(self.height):
                     self.board[y][x].clear()
+
+        self.score += 10 * self.score_multiplier
+        print(self.score)
+        self.score_multiplier = 0
+
+    def can_place_block(self, block):
+        """Проверяет, можно ли разместить блок хотя бы в одной клетке поля"""
+        for row in range(self.height - block.height + 1):
+            for col in range(self.width - block.width + 1):
+                if self.can_fit_block(block, row, col):
+                    return True
+        return False
+
+    def can_fit_block(self, block, row, col):
+        """Проверяет, поместится ли блок в данное место"""
+        for y in range(block.height):
+            for x in range(block.width):
+                if block.shape[y][x]:
+                    if self.board[row + y][col + x].occupied:
+                        return False
+                return True
+
+    def has_valid_moves(self, blocks):
+        """Проверяет, можно ли разместить хотя бы один из новых блоков"""
+        return all(self.can_place_block(block) for block in blocks)
 
 
 # Функция для генерации случайного блока
