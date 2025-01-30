@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ac24a34-621a-40dd-8eb4-ce08d3f6bf9e" name="Changes" comment="idea">
-      <change afterPath="$PROJECT_DIR$/start_menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/change_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/create_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/get_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.create_db.executor": "Run",
     "Python.main.executor": "Run",
     "Python.main_backup.executor": "Run",
     "Python.pick_block_parameter.executor": "Run",
@@ -41,9 +46,19 @@
     "Python.temp.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/zarub/PycharmProjects/BlockLines"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zarub\PycharmProjects\BlockLines" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zarub\PycharmProjects\BlockLines\database" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BlockLines" />
@@ -224,7 +239,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738181448941</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="start menu">
+      <option name="closed" value="true" />
+      <created>1738183441277</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738183441277</updated>
+    </task>
+    <task id="LOCAL-00016" summary="idea">
+      <option name="closed" value="true" />
+      <created>1738183453098</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738183453098</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -264,6 +295,7 @@
     <MESSAGE value="block_parameters" />
     <MESSAGE value="block parameters" />
     <MESSAGE value="main" />
+    <MESSAGE value="start menu" />
     <MESSAGE value="idea" />
     <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
