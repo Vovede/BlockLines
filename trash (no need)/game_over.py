@@ -1,6 +1,6 @@
 from main import main
-import pygame
 import sys
+import pygame
 
 pygame.init()
 
@@ -16,7 +16,7 @@ small_font = pygame.font.Font(None, 50)
 
 # Функция для отрисовки текста
 def draw_text(text, font, color, surface, x, y):
-    text_obj = font.render(text, True, color)
+    text_obj = font.render_board(text, True, color)
     text_rect = text_obj.get_rect(center=(x, y))
     surface.blit(text_obj, text_rect)
 
@@ -47,21 +47,21 @@ class Button:
 
 
 # Функция главного меню
-def main_menu():
-    infinite_button = Button("Бесконечный", window_width // 2 - 125, window_height // 2 - 50, 250, 50,
-                             pygame.Color("blue"), pygame.Color("green"), pygame.Color("white"))
-    adventure_button = Button("Приключения", window_width // 2 - 125, window_height // 2 + 50, 250, 50,
+def game_over_window():
+    main_menu_button = Button("Главное меню", window_width // 2 - 125, window_height // 2 - 50, 250, 50,
                               pygame.Color("blue"), pygame.Color("green"), pygame.Color("white"))
+    restart_button = Button("Заново", window_width // 2 - 125, window_height // 2 + 50, 250, 50,
+                            pygame.Color("blue"), pygame.Color("green"), pygame.Color("white"))
     quit_button = Button("Выйти", window_width // 2 - 125, window_height // 2 + 150, 250, 50,
                          pygame.Color("blue"), pygame.Color("red"), pygame.Color("white"))
 
     while True:
         screen.fill((50, 130, 255))
 
-        draw_text("Block Lines", font, pygame.Color("black"), screen, window_width // 2, window_height // 4)
+        draw_text("GAME OVER", font, pygame.Color("black"), screen, window_width // 2, window_height // 4)
 
-        infinite_button.draw(screen)
-        adventure_button.draw(screen)
+        main_menu_button.draw(screen)
+        restart_button.draw(screen)
         quit_button.draw(screen)
 
         for event in pygame.event.get():
@@ -70,16 +70,16 @@ def main_menu():
                 sys.exit()
 
             if event.type == pygame.MOUSEMOTION:
-                infinite_button.check_hover(event.pos)
-                adventure_button.check_hover(event.pos)
+                main_menu_button.check_hover(event.pos)
+                restart_button.check_hover(event.pos)
                 quit_button.check_hover(event.pos)
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    if infinite_button.is_clicked():
-                        return "play"
-                    if infinite_button.is_clicked():
-                        return "adventure"
+                    if main_menu_button.is_clicked():
+                        return "main menu"
+                    if restart_button.is_clicked():
+                        return "repeat"
                     if quit_button.is_clicked():
                         pygame.quit()
                         sys.exit()
@@ -87,15 +87,16 @@ def main_menu():
         pygame.display.flip()
 
 
-def start_game():
+def game_over():
     while True:
-        menu = main_menu()
+        menu = game_over_window()
 
-        if menu == "play":
+        if menu == "main menu":
+            from start_menu import start_menu_window
+            start_menu_window()
+        if menu == "repeat":
             main()
-        if menu == "adventure":
-            pass
 
 
 if __name__ == "__main__":
-    start_game()
+    game_over()
