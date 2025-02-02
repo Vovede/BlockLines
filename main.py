@@ -1,4 +1,6 @@
 from pick_block_parameter import pick_parameters
+import change_db
+from _datetime import datetime
 import pygame
 import sys
 
@@ -97,6 +99,8 @@ class Board:
         self.blocks_placed = 0
         self.score = 0
         self.score_multiplier = 0
+        self.db = change_db.historyDB()
+        self.historyData = {}
 
         self.left = 10
         self.top = 10
@@ -225,6 +229,13 @@ class Board:
         block.set_block_position(*block.block_origin)
         return False
 
+    def save_history(self):
+        current_datetime = datetime.now()
+        formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+        self.historyData = {"Date": formatted_datetime,
+                            "Score": self.score}
+        self.db.add(self.historyData)
+
 
 # Отрисовки текста
 def draw_text(text, font, color, surface, x, y):
@@ -344,6 +355,7 @@ def main(restart=False):
                     if board.can_place_block(dragging):
                         board.set_block_on_board(dragging)
                         if board.check_left_blocks_possibility():
+                            board.save_history()
                             game_over_window(size, screen, font, small_font)
                     dragging = None
             elif event.type == pygame.MOUSEMOTION:
