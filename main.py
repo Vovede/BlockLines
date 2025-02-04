@@ -58,8 +58,8 @@ class Block:
         for y, row in enumerate(self.shape):
             for x, cell in enumerate(row):
                 if cell:
-                    hitbox = pygame.Rect(bx + x * cell_size, by + y * cell_size, cell_size, cell_size)
-                    if hitbox.collidepoint(mx, my):
+                    hit_box = pygame.Rect(bx + x * cell_size, by + y * cell_size, cell_size, cell_size)
+                    if hit_box.collidepoint(mx, my):
                         return True
         return False
 
