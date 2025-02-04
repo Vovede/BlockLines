@@ -1,5 +1,6 @@
 from pick_block_parameter import pick_parameters
 import change_db
+import get_best_score
 from datetime import datetime
 import pygame
 import sys
@@ -97,10 +98,12 @@ class Board:
         self.start_blocks = []
         self.block_positions = []
         self.blocks_placed = 0
-        self.score = 0
-        self.score_multiplier = 0
+
         self.db = change_db.historyDB()
         self.historyData = {}
+        self.score = 0
+        self.score_multiplier = 0
+        self.best_score = get_best_score.get()
 
         self.left = 10
         self.top = 10
@@ -236,8 +239,12 @@ class Board:
                             "Score": self.score}
         self.db.add(self.historyData)
 
+    def show_scores(self, size, font, color, surface):
+        draw_text(f"Лучший: {self.best_score}", font, color, surface, size[0] // 2 - 100, self.cell_size // 2)
+        draw_text(f"Текущий: {self.score}", font, color, surface, size[0] // 2 + 100, self.cell_size // 2)
 
-# Отрисовки текста
+
+# Отрисовка текста
 def draw_text(text, font, color, surface, x, y):
     text_obj = font.render(text, True, color)
     text_rect = text_obj.get_rect(center=(x, y))
@@ -319,6 +326,7 @@ def main(restart=False):
 
     font = pygame.font.Font(None, 74)
     small_font = pygame.font.Font(None, 50)
+    score_font = pygame.font.Font(None, 30)
 
     board = Board(8, 8)
     board.set_view(50, 50, 50)
@@ -366,6 +374,7 @@ def main(restart=False):
 
         screen.fill((50, 130, 255))
         board.render_board(screen)
+        board.show_scores(size, score_font, pygame.Color("White"), screen)
 
         for block in board.start_blocks:
             block.draw_block(screen, board.cell_size)
