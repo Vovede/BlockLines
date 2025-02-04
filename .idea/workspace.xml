@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ac24a34-621a-40dd-8eb4-ce08d3f6bf9e" name="Changes" comment="Merging &quot;master&quot; to &quot;main&quot;" />
+    <list default="true" id="6ac24a34-621a-40dd-8eb4-ce08d3f6bf9e" name="Changes" comment="idea">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlockLines presentation.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/BlockLines presentation.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd.db" beforeDir="false" afterPath="$PROJECT_DIR$/bd.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trash (no need)/get_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_best_score.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +32,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vovede&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Vovede/BlockLines.git&quot;,
+    &quot;accountId&quot;: &quot;0444192b-15ca-4451-93b7-c9a4dcaf8ed2&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -48,6 +67,7 @@
     &quot;Python.temp.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/zarub/PycharmProjects/BlockLines&quot;,
@@ -59,6 +79,7 @@
       <recent name="C:\Users\zarub\PycharmProjects\BlockLines" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vovede\PycharmProjects\BlockLines" />
       <recent name="C:\Users\zarub\PycharmProjects\BlockLines\trash (no need)" />
       <recent name="C:\Users\zarub\PycharmProjects\BlockLines" />
       <recent name="C:\Users\zarub\PycharmProjects\BlockLines\database" />
@@ -92,6 +113,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="get_best_score" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="BlockLines" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_best_score.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BlockLines" />
       <option name="ENV_FILES" value="" />
@@ -117,6 +160,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.get_best_score" />
         <item itemvalue="Python.create_db" />
       </list>
     </recent_temporary>
@@ -124,7 +168,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
+        <option value="bundled-python-sdk-a5bc9544c897-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.23654.177" />
       </set>
     </attachedChunks>
   </component>
@@ -273,7 +317,31 @@
       <option name="project" value="LOCAL" />
       <updated>1738499129400</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="requirements">
+      <option name="closed" value="true" />
+      <created>1738508224570</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1738508224570</updated>
+    </task>
+    <task id="LOCAL-00019" summary="main">
+      <option name="closed" value="true" />
+      <created>1738508253553</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1738508253553</updated>
+    </task>
+    <task id="LOCAL-00020" summary="idea">
+      <option name="closed" value="true" />
+      <created>1738508264350</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1738508264350</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,10 +380,11 @@
     <MESSAGE value="task" />
     <MESSAGE value="block_parameters" />
     <MESSAGE value="block parameters" />
-    <MESSAGE value="main" />
     <MESSAGE value="start menu" />
-    <MESSAGE value="idea" />
     <MESSAGE value="Merging &quot;master&quot; to &quot;main&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging &quot;master&quot; to &quot;main&quot;" />
+    <MESSAGE value="requirements" />
+    <MESSAGE value="main" />
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
 </project>
