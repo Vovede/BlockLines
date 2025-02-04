@@ -6,5 +6,5 @@ cursor = conn.cursor()
 
 def get():
     cursor.execute("""SELECT Score FROM scores""")
-    best = max(cursor.fetchall())
+    best = max(cursor.fetchall())[0]
     return best
